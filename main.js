@@ -1,3 +1,10 @@
+//Page del profesor
+
+//https://github.com/arielkaizen/Programacion_backend
+
+
+
+
 //Entrega Clases
 
 
@@ -13,57 +20,54 @@ class Usuario {
 
     }
 
+    //Metodos
 
+    getFullName () {
+        return `${this.nombre} ${this.apellido}`
+        
+    }
+
+    addMascota (nombre){
+
+        usuario.mascotas.push (nombre)
+       }
+
+    countMascota (usr){
+    
+        console.log(usr.mascotas.length)
+    }
+
+    addBook (nom, aut){
+        usuario.libros.push ({libro: nom , autor: aut})
+    }
+    
+    getBookNames (e){
+    
+        e.libros.forEach((e) => console.log(e.libro))
+    }
 }
+
 
 // creacion de usuario
 const usuario = new Usuario ("jorge", "armando")
 
-//funciones
-
-const getFullName = (usr)=> {
-    console.log(`${usr.nombre} ${usr.apellido}`)
-    
-}
-
-const addMascota = (nombre)=> {
-
-     usuario.mascotas.push (nombre)
-    }
-
-const countMascota = (usr) => {
-    
-    console.log(usr.mascotas.length)
-}
-
-const addBook = (nom, aut) => {
-    usuario.libros.push ({libro: nom , autor: aut})
-}
-
-const getBookNames = (e) => {
-    
-    e.libros.forEach((e) => console.log(e.libro))
-}
-
-//nombre + apellido del usuario
-getFullName(usuario);
 
 //agrega mascotas al array mascotas
-addMascota("lali")
-addMascota("rene")
-addMascota("braulio")
+usuario.addMascota("lali")
+usuario.addMascota("rene")
+usuario.addMascota("braulio")
 
 //cuenta la cantidad de mascotas que tiene el usuario
-countMascota(usuario)
+usuario.countMascota(usuario)
 
 //agrega libros al usuario
-addBook("el buen libro", "Bart" )
-addBook("capitan monolito", "Rorge" )
-addBook("mas barato por docena", "Cimes" )
+usuario.addBook("el buen libro", "Bart" )
+usuario.addBook("capitan monolito", "Rorge" )
+usuario.addBook("mas barato por docena", "Cimes" )
 
 
 // informa nombre de libros del ausuario
-getBookNames(usuario)
+usuario.getBookNames(usuario)
 
 console.log(usuario)
 
