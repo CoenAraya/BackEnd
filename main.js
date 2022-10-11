@@ -29,7 +29,7 @@ class Usuario {
 
     addMascota (nombre){
 
-        usuario.mascotas.push (nombre)
+        this.mascotas.push (nombre)
        }
 
     countMascota (usr){
@@ -38,12 +38,12 @@ class Usuario {
     }
 
     addBook (nom, aut){
-        usuario.libros.push ({libro: nom , autor: aut})
+        this.libros.push ({libro: nom , autor: aut})
     }
     
-    getBookNames (e){
+    getBookNames (){
     
-        e.libros.forEach((e) => console.log(e.libro))
+        this.libros.forEach((e) => console.log(e.libro))
     }
 }
 
