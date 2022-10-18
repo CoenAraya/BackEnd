@@ -1,0 +1,32 @@
+[
+  {
+    "titulo": "El gran libro",
+    "precio": 200,
+    "id": 1
+  },
+  {
+    "titulo": "Mas claro que la luz",
+    "precio": 700,
+    "id": 2
+  },
+  {
+    "titulo": "El sigle",
+    "precio": 1200,
+    "id": 3
+  },
+  {
+    "titulo": "El gran libro",
+    "precio": 200,
+    "id": 4
+  },
+  {
+    "titulo": "Mas claro que la luz",
+    "precio": 700,
+    "id": 5
+  },
+  {
+    "titulo": "El sigle",
+    "precio": 1200,
+    "id": 6
+  }
+]

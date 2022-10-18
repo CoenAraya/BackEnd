@@ -1,0 +1,26 @@
+[
+    {
+    "titulo": "El gran libro",
+    "precio": 200,
+    "id": 1
+},
+    {
+    "titulo": "Locomotora",
+    "precio": 400,
+    "id": 2
+},
+    {
+    "titulo": "Las ventajas de ser invisible",
+    "precio": 800,
+    "id": 3
+},
+    {
+    "titulo": "Mas barato por quincena",
+    "precio": 700,
+    "id": 4
+},
+    {
+    "titulo": "La dama de blanco",
+    "precio": 1400,
+    "id": 5
+}]
