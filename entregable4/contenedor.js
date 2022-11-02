@@ -44,7 +44,6 @@ const fs = require ('fs') ;
         try{
             const nuevoObjeto = await this.readFile()
             const pasoJSON = JSON.parse(nuevoObjeto)
-
             const prod = pasoJSON.find((e) => e.id === id)
             return prod
 

@@ -1,7 +1,7 @@
 const express = require('express');
 const {Router} = express
 const Contenedor = require("./contenedor.js")
-const nuevoProducto = new Contenedor('productos.txt')
+const nuevoProducto = new Contenedor('productos.json')
 
 
 const aplicacion = express();
@@ -23,20 +23,21 @@ const prod = [];
 
 // END POINTS
 
-rutaProductos.get ('/' ,  (req, res) => {
-   
-    res.send('ok');
+rutaProductos.get ('/' ,  async (req, res) => {
+    const datita = await nuevoProducto.getAll()
+    res.json(datita);
 })
-rutaProductos.get ('/' , (req, res) => {
-    res.send('ok')
-})
-rutaProductos.post ('/' , (req, res) => {
-    res.send('ok')
+
+rutaProductos.get ('/:id ' , async (req, res) => {
+    const id = parseInt(req.params.id);
+    const datita = nuevoProducto.getById(id);
+    res.json(datita);
 })  
+
 rutaProductos.put ('/' , (req, res) => {
     res.send('ok')
 })
-rutaProductos.delete ('/' , (req, res) => {
+rutaProductos.delete ('/:id' , (req, res) => {
     res.send('ok')
 })
 
