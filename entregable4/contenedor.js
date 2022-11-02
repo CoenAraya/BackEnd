@@ -92,34 +92,3 @@ const fs = require ('fs') ;
  }
 
  module.exports = Contenedor
-
-
-
-
-//ENTREGA DE SERVIDOR
-
-//CREACION DE SV
-
-const nuevoProducto = new Contenedor('productos.txt')
-
-const express = require ('express');
-
-const aplicacion = express()
-     
-
-//CREACION DE ENDPOINTS
-
-aplicacion.get ('/productos', async (req , res) =>{
-    const prod = await nuevoProducto.getAll()
-    res.json(prod);
-})
-
-aplicacion.get ('/productoRandom', async (req , res) =>{
-    const index = await nuevoProducto.getAll()
-    const random = Math.floor(Math.random() * index.length)
-    console.log(random)
-    const prodRan = await nuevoProducto.getById(random)
-    res.json(prodRan);
-})
-
-
