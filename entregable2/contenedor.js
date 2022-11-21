@@ -100,7 +100,7 @@ const fs = require ('fs') ;
 
 //CREACION DE SV
 
-const nuevoProducto = new Contenedor('productos.txt')
+const nuevoProducto = new Contenedor('productos.json')
 
 const express = require ('express');
 

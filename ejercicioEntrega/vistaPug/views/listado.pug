@@ -1,0 +1,27 @@
+html
+  head
+    
+    title="Mi primera plantilla en pug js"
+  body
+     
+    h1(style=`color: blue`)= "Productos en listado"
+    a(href="/") Ir al formulario ->
+    h1 Productos  :
+    if (productos.length == 0)
+      h2 No hay productos a mostrar :(
+    
+    else
+      table 
+        tr 
+          th= 'Nombre'
+          th= 'Precio'
+          th= 'Foto'
+        each producto in productos 
+          tr 
+            td= producto.title 
+            td= producto.price  
+              td 
+              ing(
+                src= producto.thumbnail
+              )
+          

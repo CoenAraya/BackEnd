@@ -1,0 +1,18 @@
+html
+  head
+    
+    title="Mi primera plantilla en pug js"
+  body
+    h1(style=`color: blue`)= "Lista de recordatorio !"
+    a(href="/productos") Ir a la lista ->
+    h1 Ingrese producto: 
+      form(action="/productos" method="post")
+        label(for="title") Titulo :
+        input(type="text" id="title" name="title")
+        br
+        label(for="price") Precio :
+        input(type="text" id="price" name="price")
+        br
+        label(for="thumbnail") Foto URL:
+        input(type="text" id="thumbnail" name="thumbnail")
+        input(type="submit" value="Enviar")

@@ -20,20 +20,60 @@ const fs = require ('fs') ;
         }
      }
 
-     async readFile(){
-        const data = await fs.promises.readFile( this.productos , 'utf-8')
-        return data
+     async writeFile(archivo, contenido) {
+        try {
+            /* escribir archivo */
+            await fs.writeFileSync(archivo, JSON.stringify(contenido, null, 4));
+        } catch (error) {
+            console.log(`Error escribiendo el archivo: ${error.message}`);
+        }
+    }
+
+     async readFile(product){
+        const data = await fs.readFileSync( product )
+        return JSON.parse(data)
      }
+
+     async modificador(id, contenido) {
+        try {
+            /* existe? */
+
+                let data = await this.readFile(this.productos);
+                /* busco el producto */
+                let dataId = data.filter(item => item.id === id);
+                if (dataId.length === 0) {
+                    /* no existe da error */
+                    throw new Error(
+                        `El producto no existe`
+                    );
+                } else {
+                    /* si existe elimino el produco a editar */
+                    data = data.filter(item => item.id !== id);
+                    /* agrego con el mismo id */
+                    dataId = { id: id, ...contenido };
+                    data.push(dataId);
+                    /* Uso modulo para reescribir */
+                    this.writeFile(this.productos, data);
+                    console.log(`Producto con id ${id} modificado`);
+                    return dataId;
+                }
+            
+        } catch (error) {
+            console.log(`Error modificando el producto: ${error.message}`);
+        }
+    }
 
      async save(objeto) {
         try{
-        const nuevoObjeto = await this.readFile()
-        const pasoJSON = JSON.parse(nuevoObjeto)
+        const nuevoObjeto = await this.readFile(this.productos)
 
-        objeto.id = pasoJSON.length + 1
-        pasoJSON.push(objeto)
+        objeto = {id: nuevoObjeto.length + 1, ...objeto}
 
-        fs.promises.writeFile(this.productos, JSON.stringify(pasoJSON, null, 2))
+        nuevoObjeto.push(objeto)
+
+        this.writeFile(this.productos, nuevoObjeto)
+        console.log(this.productos)
+        return objeto.id
      } 
         catch(error){
             console.log(error)
@@ -42,10 +82,13 @@ const fs = require ('fs') ;
 
      async getById(id){
         try{
-            const nuevoObjeto = await this.readFile()
-            const pasoJSON = JSON.parse(nuevoObjeto)
-            const prod = pasoJSON.find((e) => e.id === id)
-            return prod
+            const nuevoObjeto = await this.readFile(this.productos)
+            const prod = nuevoObjeto.filter((e) => e.id === id)
+            if (prod.length == 0){
+                console.log("el producto no existe")
+            } else {
+                return prod
+            }
 
         }
         catch(error){
@@ -55,10 +98,10 @@ const fs = require ('fs') ;
 
      async getAll(){
         try{
-            const nuevoObjeto = await this.readFile()
-            const pasoJSON = JSON.parse(nuevoObjeto)
+            const nuevoObjeto = await this.readFile(this.productos)
+            
 
-            return pasoJSON
+            return nuevoObjeto
 
         }
         catch(error){
@@ -68,14 +111,12 @@ const fs = require ('fs') ;
 
      async deleteById (id){
         try{
-            const nuevoObjeto = await this.readFile()
-            const pasoJSON = JSON.parse(nuevoObjeto)
-            
-            const borrarDato = pasoJSON.find((e) => e.id == id)
-            if (borrarDato){
-                const itemIndex = pasoJSON.indexOf(borrarDato)
-                pasoJSON.splice(itemIndex, 1)
-                await fs.promises.writeFile(this.productos, JSON.stringify(pasoJSON, null, 2))
+            const nuevoObjeto = await this.readFile(this.productos)
+                       
+            if (nuevoObjeto.some(item => item.id === id)){
+                const nuevoObjeto = await this.readFile(this.productos)
+                const datos = nuevoObjeto.filter(item => item.id !== id);
+                this.writeFile(this.productos, datos)
         }
     }   
         catch(error){
