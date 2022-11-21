@@ -30,7 +30,7 @@ rutaProductos.get ('/' ,  async (req, res) => {
 
 rutaProductos.get ('/:id ' , async (req, res) => {
     const id = parseInt(req.params.id);
-    const datita = nuevoProducto.getById(id);
+    const datita = await nuevoProducto.getById(id);
     res.json(datita);
 })  
 
