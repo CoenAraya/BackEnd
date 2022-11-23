@@ -1,12 +1,12 @@
 [
   {
-    "nombre": "Escuadra X3",
-    "descripcion": "Escuadra X3",
+    "nombre": "Sillon 2 cuerpos",
+    "descripcion": "Sillon 2 cuerpos",
     "timestamp": 1668647566189,
-    "codigo": "1234567890",
-    "precio": 123.45,
+    "codigo": "4121231",
+    "precio": 33000,
     "stock": 10,
-    "foto": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
+    "foto": "https://www.pngfind.com/pngs/m/399-3995172_sillones-png-cuadros-de-super-heroes-en-partes.png",
     "id": 1
   }
 ]

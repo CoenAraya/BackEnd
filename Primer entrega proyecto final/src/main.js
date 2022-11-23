@@ -17,7 +17,7 @@ aplicacion.use(express.urlencoded({ extended: true }));
 aplicacion.use('/api/productos', rutaProducto);
 aplicacion.use('/api/carrito', rutaCarrito);
 
-//Midleware de rutas no implementadas
+//Rutas no implementadas
 aplicacion.use((peticion, respuesta, next) => {
   if (!peticion.route) {
     respuesta.status(404).send({ error : -2, descripcion: `ruta ${peticion.url} no encontrada` });

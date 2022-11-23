@@ -64,7 +64,7 @@ export class Contenedor {
       }
     });
     objeto.id = id;
-    if (posicion => 0) {
+    if (posicion >= 0) {
       archivoParseado[posicion] = objeto;
       await fs.promises.writeFile(this.nombre, JSON.stringify(archivoParseado, null, 2));
       return objeto.id;
