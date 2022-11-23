@@ -36,7 +36,18 @@ rutaProductos.get ('/' , async (req, res) => {
 rutaProductos.get ('/:id' , async (req, res) => {
     const id = parseInt(req.params.id);
     const datita = await nuevoProducto.getById(id);
+<<<<<<< HEAD
+    res.json(datita);
+})  
+
+rutaProductos.put ('/' , (req, res) => {
+    res.send('ok')
+})
+rutaProductos.delete ('/:id' , (req, res) => {
+    res.send('ok')
+=======
     res.json(datita)
+>>>>>>> 0ca53be39536d960930e64377c2f54993127fc7c
 })
 
 rutaProductos.post("/", async (req, res) => {
