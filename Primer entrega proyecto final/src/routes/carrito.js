@@ -5,11 +5,14 @@ const rutaCarrito = express.Router();
 const carritos = new Contenedor('src/db/carritos.txt');
 const productos = new Contenedor('src/db/productos.txt');
 
+//Muestra los carritos
 
 rutaCarrito.get('/', async (peticion, respuesta) => {
   const listaCarritos = await carritos.getAll();
   respuesta.json(listaCarritos);
 });
+
+//Borra un carrito
 
 rutaCarrito.delete('/:id', async (peticion, respuesta) => {
   const idCarrito = parseInt(peticion.params.id);
@@ -19,12 +22,14 @@ rutaCarrito.delete('/:id', async (peticion, respuesta) => {
   });
 });
 
+//Muestra un producto del carrito
 rutaCarrito.get('/:id/productos', async (peticion, respuesta) => {
   const idCarrito = parseInt(peticion.params.id);
   const listaProductos = await carritos.getById(idCarrito);
   respuesta.json(listaProductos.productos);
 });
 
+//Agrega un carrito
 rutaCarrito.post('/', async (peticion, respuesta) => {
   const carrito = {
     timestamp: Date.now(),
@@ -34,6 +39,7 @@ rutaCarrito.post('/', async (peticion, respuesta) => {
   respuesta.json(id);
 });
 
+// Agrega un producto a un carrito
 rutaCarrito.post('/:id/productos', async (peticion, respuesta) => {
   const idCarrito = parseInt(peticion.params.id);
   const idProducto = peticion.body.idProducto;
@@ -46,6 +52,7 @@ rutaCarrito.post('/:id/productos', async (peticion, respuesta) => {
   });
 });
 
+// Borra un producto de un carrito
 rutaCarrito.delete('/:id/productos/:id_prod', async (peticion, respuesta) => {
   const idCarrito = parseInt(peticion.params.id);
   const idProducto = parseInt(peticion.params.id_prod);
@@ -56,7 +63,7 @@ rutaCarrito.delete('/:id/productos/:id_prod', async (peticion, respuesta) => {
       indexToDelete = index;
     }
   });
-  if (indexToDelete => 0) {
+  if (indexToDelete >= 0) {
     carrito.productos.splice(indexToDelete, 1);
   }
   await carritos.update(idCarrito, carrito);
